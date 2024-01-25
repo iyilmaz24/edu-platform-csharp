@@ -1,5 +1,8 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.IO.Compression;
 using EduPlatform.Models;
+using EduPlatform.Services;
 
 namespace EduPlatform {
 
@@ -7,13 +10,25 @@ namespace EduPlatform {
     {
         static void Main(string [] args) {
 
-            Console.WriteLine("Hello, World!");
-            Console.WriteLine("Running in Main, inside of Program");
+            Console.WriteLine("Welcome to C# Edu Platform!");
             
-            Course mainCourse = AddCourse();
-            Console.WriteLine(mainCourse.ToString());
+            // AddCourse();
+            AddCourse();
+            PrintCourses();
+
+            Student michael = new Student("Mike", "SENR");
+            SaveStudent(michael);
+            Student ana = new Student("Ana", "SOPH");
+            Student john = new Student("John", "JUNR");
+            SaveStudent(ana);
+            SaveStudent(john);
+
+            SearchCourses();
+
+            ListStudents();
         }
-        static Course AddCourse() {
+
+        static void AddCourse() {
             
             Console.WriteLine("Name:");
             var name = Console.ReadLine();
@@ -25,11 +40,40 @@ namespace EduPlatform {
             var description = Console.ReadLine();
 
             Course newCourse;
-            newCourse = new Course{Name = name, Code = code, Description = description};
-            return newCourse;
+            newCourse = new Course{Name = name??"EmptyName", Code = code??"EmptyCode", Description = description??"EmptyDescription"};
 
-            // CourseService.Current.Add(newCourse);
+            CourseService.Current.Add(newCourse);
         }
+
+        static void PrintCourses() {
+            Console.WriteLine("===== List of Courses ======");
+                CourseService.Current.Print();
+            Console.WriteLine("=====//=============//======");
+        }   
+
+        static void SearchCourses() {
+            Console.WriteLine("Please provide course name or code:");
+            string? queryInput = Console.ReadLine();
+
+            Console.WriteLine("===== Search Results ======");
+                CourseService.Current.Search(queryInput);
+            Console.WriteLine("=====//============//======");
+        }   
+
+        static void SaveStudent(Student student) {
+            StudentService.Current.AddStudent(student);
+        }
+
+        static void ListStudents() {
+            Console.WriteLine("===== List of Students ======");
+                StudentService.Current.PrintStudents();
+            Console.WriteLine("=====//==============//======");
+        }
+
+
+
+
+
     }
 
 
