@@ -29,7 +29,7 @@ namespace EduPlatform.Services {
         //             || c.Code.ToUpper().Contains(query ?? string.Empty)).ToList();
         //     }
         // }
-        // public void Search(string? query) {
+        public void Search(string? query) { Console.WriteLine(query); }
         //     this.query = query ?? "None";
 
         //     if(query == "None") {
