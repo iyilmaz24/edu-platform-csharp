@@ -4,7 +4,7 @@ namespace EduPlatform.Models {
 
     public class Person {
 
-        Person() {
+        public Person() {
             Grades = new List<Grade>();
         }
 
@@ -26,7 +26,12 @@ namespace EduPlatform.Models {
             get { return _classification; }
             set { _classification = value; }
         }
-        private List<Grade>? Grades;
+
+        public override string ToString()
+        {
+            return $"{Name} - {Classification}";
+        }
+        private IList<Grade>? Grades;
 
     }
 

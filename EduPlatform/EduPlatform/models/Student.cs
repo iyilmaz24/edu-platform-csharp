@@ -2,12 +2,13 @@
 namespace EduPlatform.Models {
     
     public class Student {
-        
         public Student(string name, string classI) {
             Name = name;
             Class = classI;
+            courses = new List<Course>();
         }
 
+        IList<Course> courses;
         private string? _class;
         public string? Class {
             get { return _class; }
@@ -20,9 +21,21 @@ namespace EduPlatform.Models {
             set { _name = value; }
         }
 
+        public void AddCourse(Course course) {
+            courses.Add(course);
+        }
+
         public override string ToString()
         {
             return $"{Name} - {Class}";
+        }
+
+        public void PrintStudentDetails() {
+            Console.WriteLine(ToString());
+            Console.WriteLine($"{Name}'s Courses:");
+            foreach(var c in courses) {
+                Console.WriteLine(c.ToString());
+            }
         }
     }
 }

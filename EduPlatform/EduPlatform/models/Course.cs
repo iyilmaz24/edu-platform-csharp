@@ -1,13 +1,14 @@
 
 
+using System.ComponentModel;
+
 namespace EduPlatform.Models {
     
     public class Course {
-
         public Course() {
-            
+            roster = new List<Person>();
         }
-
+        IList<Person> roster;
         protected string? _name;
         public string Name{
             get { return _name ?? "EMPTY";}
@@ -23,10 +24,22 @@ namespace EduPlatform.Models {
             get { return _description; }
             set { _description = value; }  
         }
-        
         public override string ToString()
         {
             return $"({Code}) {Name} - {Description}";
+        }
+
+        public void Enroll(Student student) {
+            Person newPerson = new Person{Name = student.Name, Classification = student.Class};
+            roster.Add(newPerson);
+        }
+
+        public void PrintCourseDetails() {
+            Console.WriteLine(ToString());
+            Console.WriteLine($"{Code} Students:");
+            foreach(var person in roster) {
+                Console.WriteLine(person.ToString());
+            }
         }
     }
 }

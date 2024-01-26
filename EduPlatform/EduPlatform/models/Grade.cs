@@ -3,7 +3,7 @@
 namespace EduPlatform.Models {
     
     public class Grade {
-        Grade(double score, string courseN, string assignmentN, string studentN) {
+        public Grade(double score, string courseN, string assignmentN, string studentN) {
             Score = score; 
             CourseName = courseN;
             AssignmentName = assignmentN;

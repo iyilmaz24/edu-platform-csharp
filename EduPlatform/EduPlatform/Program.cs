@@ -26,6 +26,8 @@ namespace EduPlatform {
             SearchCourses();
 
             ListStudents();
+
+            AddStudentToCourse(ana);
         }
 
         static void AddCourse() {
@@ -70,7 +72,11 @@ namespace EduPlatform {
             Console.WriteLine("=====//==============//======");
         }
 
-
+        static void AddStudentToCourse(Student student) {
+            Course selectedCourse = CourseService.Current.SelectCourse();
+            CourseService.Current.AddStudent(student, selectedCourse);
+            selectedCourse.PrintCourseDetails();
+        }
 
 
 
