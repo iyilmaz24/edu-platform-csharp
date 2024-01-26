@@ -34,9 +34,14 @@ namespace EduPlatform.Models {
             roster.Add(newPerson);
         }
 
-        public void Unenroll(Student student) {
+        public string? GetStudentName(int index) {
+            return roster[index].Name;
+        }
 
-            // roster.Remove();
+        public void Unenroll(int index) {
+
+            roster.RemoveAt(index-1);
+
         }
 
         public void PrintCourseDetails() {

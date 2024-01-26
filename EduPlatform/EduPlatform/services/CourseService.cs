@@ -54,9 +54,8 @@ namespace EduPlatform.Services {
         public void AddStudent(Student student, Course course) {
             course.Enroll(student);
         }
-        public void RemoveStudent(Student student, Course course) {
-            // have to get name from student argument and use that to unenroll Person model
-            course.Unenroll(student);
+        public void RemoveStudent(int index, Course course) {
+            course.Unenroll(index);
         }
         public void Print() {
             foreach(Course course in courses){

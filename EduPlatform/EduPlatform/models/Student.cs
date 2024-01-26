@@ -24,6 +24,10 @@ namespace EduPlatform.Models {
             courses.Add(course);
         }
 
+        public void RemoveCourse(Course course) {
+            courses.Remove(course);
+        }
+
         public override string ToString()
         {
             return $"{Name} - {Class}";

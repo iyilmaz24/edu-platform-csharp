@@ -14,6 +14,7 @@ namespace EduPlatform {
             
             // AddCourse();
             AddCourse();
+            AddCourse();
             PrintCourses();
 
             CreateStudent();
@@ -21,7 +22,8 @@ namespace EduPlatform {
 
             AddStudentToCourse();
             AddStudentToCourse();
-            
+            AddStudentToCourse();
+
             // SearchCourses();
             // ListStudents();
 
@@ -94,7 +96,6 @@ namespace EduPlatform {
             selectedStudent.AddCourse(selectedCourse);
             Console.WriteLine(selectedStudent.Name + " enrolled into " + selectedCourse.Code);
             Console.WriteLine("=====//===================//======");
-
         }
 
         static void RemoveStudentFromCourse() {
@@ -107,23 +108,13 @@ namespace EduPlatform {
             Console.WriteLine("Please select student to delete: ");
             int intTemp = Convert.ToInt32(Console.ReadLine());
 
+            List<Student> queryStudent = StudentService.Current.Search(searchResults[0]?.GetStudentName(intTemp-1)??"Error Getting Name");
+            Student selectedStudent = queryStudent[0];
 
-                // implement a search feature to find a specific student in Students list from StudentService
-                // use the returned queried student model and take it's name
-
-                // remove the student from the selectedCourse roster
-                    // query the List of Person models and remove the one with the same name
-
-                // CourseService.Current.RemoveStudent(student, selectedCourse);
-
-
-                // remove the selectedCourse from the student's roster 
-                // student.RemoveCourse(selectedCourse);
+            selectedStudent.RemoveCourse(selectedCourse);
+            CourseService.Current.RemoveStudent(intTemp, selectedCourse);
 
             Console.WriteLine("===//==========================//===");
-            // DEBUG
-            // selectedCourse.PrintCourseDetails();
-            // student.PrintStudentDetails(); 
         }
 
 
