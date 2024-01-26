@@ -28,6 +28,19 @@ namespace EduPlatform.Services
                 s => 
                     s.Name.ToUpper().Contains(query?.ToUpper() ?? string.Empty)).ToList();
         }
+        public void SearchBackend(string? query) {
+            List<Student> searchResults = Search(query??"0");
+            Console.WriteLine("===== Search Results ======");
+                if(searchResults.Count() == 0){
+                    Console.WriteLine("Returned 0 Total Results.");
+                }
+                else {
+                    foreach(var s in searchResults){
+                        Console.WriteLine(s.ToString());
+                    }
+                }
+            Console.WriteLine("=====//============//======");
+        }
             
         public void AddStudent(Student student) {
             students.Add(student);

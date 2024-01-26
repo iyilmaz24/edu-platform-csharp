@@ -21,8 +21,10 @@ namespace EduPlatform {
             CreateStudent();
 
             AddStudentToCourse();
-            AddStudentToCourse();
-            AddStudentToCourse();
+            // AddStudentToCourse();
+            // AddStudentToCourse();
+
+            SearchCourses();
 
             // SearchCourses();
             // ListStudents();
@@ -30,7 +32,7 @@ namespace EduPlatform {
             // need to make user select a student and then select a course
                 // AddStudentToCourse(ana);
 
-            RemoveStudentFromCourse();
+            // RemoveStudentFromCourse();
         }
 
         static void AddCourse() {
@@ -57,19 +59,15 @@ namespace EduPlatform {
             Console.WriteLine("===//==================================//===");
             Console.WriteLine("Provide exact course name or code to search:");
             string? queryInput = Console.ReadLine();
-            List<Course> searchResults = CourseService.Current.Search(queryInput);
-
-            Console.WriteLine("===== Search Results ======");
-                if(searchResults.Count() == 0){
-                    Console.WriteLine("Returned 0 Total Results.");
-                }
-                else {
-                    foreach(var c in searchResults){
-                        Console.WriteLine(c.ToString());
-                    }
-                }
-            Console.WriteLine("=====//============//======");
+            CourseService.Current.SearchBackend(queryInput);
         }   
+
+        static void SearchStudents() {
+            Console.WriteLine("===//==================================//===");
+            Console.WriteLine("Provide exact student name to search:");
+            string? queryInput = Console.ReadLine();
+            StudentService.Current.SearchBackend(queryInput);
+        }
 
         static void CreateStudent() {
             Console.WriteLine("=== Creating New Student ===");

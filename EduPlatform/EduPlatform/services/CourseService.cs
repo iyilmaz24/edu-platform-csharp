@@ -25,7 +25,19 @@ namespace EduPlatform.Services {
                     c.Name.ToUpper().Contains(query?.ToUpper() ?? string.Empty)
                     || c.Code.ToUpper().Contains(query?.ToUpper() ?? string.Empty)).ToList();
         }
-
+        public void SearchBackend(string? query) {
+            List<Course> searchResults = Search(query??"0");
+            Console.WriteLine("===== Search Results ======");
+                if(searchResults.Count() == 0){
+                    Console.WriteLine("Returned 0 Total Results.");
+                }
+                else {
+                    foreach(var c in searchResults){
+                        Console.WriteLine(c.ToString());
+                    }
+                }
+            Console.WriteLine("=====//============//======");
+        }
         public void Add(Course newCourse) {
             courses.Add(newCourse);
         }
