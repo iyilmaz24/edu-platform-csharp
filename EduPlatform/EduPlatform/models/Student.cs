@@ -9,14 +9,14 @@ namespace EduPlatform.Models {
         }
         IList<Course> courses;
         private string? _class;
-        public string? Class {
-            get { return _class; }
+        public string Class {
+            get { return _class ?? "EMPTY"; }
             set { _class = value?.ToUpper(); }
         }
 
         private string? _name;
-        public string? Name {
-            get { return _name; }
+        public string Name {
+            get { return _name ?? "EMPTY"; }
             set { _name = value; }
         }
 

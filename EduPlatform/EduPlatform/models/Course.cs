@@ -7,8 +7,12 @@ namespace EduPlatform.Models {
     public class Course {
         public Course() {
             roster = new List<Person>();
+            assignments = new List<Assignment>();
+            modules = new List<Module>();
         }
         IList<Person> roster;
+        IList<Assignment> assignments;
+        IList<Module> modules;
         protected string? _name;
         public string Name{
             get { return _name ?? "EMPTY";}
@@ -39,9 +43,18 @@ namespace EduPlatform.Models {
         }
 
         public void Unenroll(int index) {
-
             roster.RemoveAt(index-1);
+        }
 
+        public void createAssignment(string name, string description, double points, string dueDate) {
+            Assignment newAssignment = new Assignment{Name = name, Description = description, TotalAvailablePoints = points, DueDate = dueDate};
+            assignments.Add(newAssignment);
+        }
+
+        public void printAssignments() {
+            foreach(Assignment a in assignments) {
+                Console.WriteLine(a.ToString());
+            }
         }
 
         public void PrintCourseDetails() {

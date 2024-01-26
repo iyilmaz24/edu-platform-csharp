@@ -23,7 +23,7 @@ namespace EduPlatform.Services
             students = new List<Student>();
         }
 
-        public List<Student> Search(string query) { 
+        public List<Student> Search(string? query) { 
                 return students.Where(
                 s => 
                     s.Name.ToUpper().Contains(query?.ToUpper() ?? string.Empty)).ToList();
