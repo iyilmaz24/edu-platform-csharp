@@ -34,6 +34,7 @@ namespace EduPlatform.Models {
         }
 
         public void PrintStudentDetails() {
+            Console.WriteLine(ToString());
             Console.WriteLine($"{Name}'s Courses:");
             foreach(var c in courses) {
                 Console.WriteLine(c.ToString());

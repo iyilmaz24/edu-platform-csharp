@@ -30,6 +30,9 @@ namespace EduPlatform {
             PrintAssignments();
             PrintAssignments();
 
+            UpdateCourseInfo();
+            UpdateStudentInfo();
+
             // SearchCourses();
             // ListStudents();
 
@@ -131,6 +134,7 @@ namespace EduPlatform {
             double points = Convert.ToDouble(Console.ReadLine());;
 
             Assignment newAssignment = CourseService.Current.CreateAssignment(name??"EMPTY", description??"EMPTY", points, dueDate??"EMPTY");
+            Console.WriteLine("Which Course?");
             Course selectedCourse = CourseService.Current.SelectCourse();
             CourseService.Current.AddAssignment(newAssignment, selectedCourse);
 
@@ -144,6 +148,54 @@ namespace EduPlatform {
             selectedCourse.printAssignments();
             Console.WriteLine("=====//======================//======");
         }
+
+            static void UpdateCourseInfo() {
+            Console.WriteLine("===== Update a Course's Information ======");
+
+            Course selectedCourse = CourseService.Current.SelectCourse();
+            Console.WriteLine("New Course Name (press enter to skip):");
+            string? name = Console.ReadLine();
+            Console.WriteLine("New Course Code (press enter to skip):");
+            string? code = Console.ReadLine();
+            Console.WriteLine("New Course Description (press enter to skip):");
+            string? description = Console.ReadLine();
+
+            if(name != ""){
+                selectedCourse.Name = name??"EMPTY";
+            }
+            if(code != ""){
+                selectedCourse.Code = code??"EMPTY";
+            }
+            if(description != ""){
+                selectedCourse.Description = description;
+            }
+
+            Console.WriteLine("Updated Course Details:");
+            selectedCourse.PrintCourseDetails();
+            Console.WriteLine("=====//=========================//======");
+        }
+
+        static void UpdateStudentInfo() {
+            Console.WriteLine("===== Update a Student's Information ======");
+
+            Student selectedStudent = StudentService.Current.SelectStudent();
+            Console.WriteLine("New Student Name (press enter to skip):");
+            string? name = Console.ReadLine();
+            Console.WriteLine("New Student Class (press enter to skip):");
+            string? classI = Console.ReadLine();
+
+            if(name != ""){
+                selectedStudent.Name = name??"EMPTY";
+            }
+            if(classI != ""){
+                selectedStudent.Class = classI??"EMPTY";
+            }
+            Console.WriteLine("Updated Student Details:");
+            selectedStudent.PrintStudentDetails();
+            Console.WriteLine("=====//=========================//======");
+        }
+
+
     }
 
 

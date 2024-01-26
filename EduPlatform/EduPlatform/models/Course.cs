@@ -21,7 +21,7 @@ namespace EduPlatform.Models {
         protected string? _code;
         public string Code{
             get { return _code ?? "EMPTY"; }
-            set { _code = value?.ToUpper();}  
+            set { _code = value.ToUpper();}  
         }
         protected string? _description;
         public string? Description{
