@@ -26,6 +26,10 @@ namespace EduPlatform {
 
             SearchCourses();
 
+            AddAssignmentToCourse();
+            PrintAssignments();
+            PrintAssignments();
+
             // SearchCourses();
             // ListStudents();
 
@@ -115,7 +119,31 @@ namespace EduPlatform {
             Console.WriteLine("===//==========================//===");
         }
 
+        static void AddAssignmentToCourse() {
+            Console.WriteLine("===== Create Assignment for Course ======");
+            Console.WriteLine("Assignment Name:");
+            string? name = Console.ReadLine();
+            Console.WriteLine("Assignment Description:");
+            string? description = Console.ReadLine();
+            Console.WriteLine("Assignment Due Date:");
+            string? dueDate = Console.ReadLine();
+            Console.WriteLine("Total Points:");
+            double points = Convert.ToDouble(Console.ReadLine());;
 
+            Assignment newAssignment = CourseService.Current.CreateAssignment(name??"EMPTY", description??"EMPTY", points, dueDate??"EMPTY");
+            Course selectedCourse = CourseService.Current.SelectCourse();
+            CourseService.Current.AddAssignment(newAssignment, selectedCourse);
+
+            Console.WriteLine(newAssignment.Name + " added to " + selectedCourse.Code);
+            Console.WriteLine("=====//======================//======");
+        }
+
+        static void PrintAssignments() {
+            Console.WriteLine("===== Print Course Assignments ======");
+            Course selectedCourse = CourseService.Current.SelectCourse();
+            selectedCourse.printAssignments();
+            Console.WriteLine("=====//======================//======");
+        }
     }
 
 

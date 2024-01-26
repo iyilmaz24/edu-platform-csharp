@@ -33,7 +33,7 @@ namespace EduPlatform.Services {
                 }
                 else {
                     foreach(var c in searchResults){
-                        Console.WriteLine(c.ToString());
+                        c.PrintCourseDetails();
                     }
                 }
             Console.WriteLine("=====//============//======");
@@ -68,6 +68,15 @@ namespace EduPlatform.Services {
         }
         public void RemoveStudent(int index, Course course) {
             course.Unenroll(index);
+        }
+
+        public Assignment CreateAssignment(string name, string description, double points, string dueDate) {
+            Assignment newAssignment = new Assignment{Name = name, Description = description, TotalAvailablePoints = points, DueDate = dueDate};
+            return newAssignment;
+        }
+
+        public void AddAssignment(Assignment assignment, Course course) {
+            course.AddAssignment(assignment);
         }
         public void Print() {
             foreach(Course course in courses){

@@ -46,14 +46,19 @@ namespace EduPlatform.Models {
             roster.RemoveAt(index-1);
         }
 
-        public void createAssignment(string name, string description, double points, string dueDate) {
-            Assignment newAssignment = new Assignment{Name = name, Description = description, TotalAvailablePoints = points, DueDate = dueDate};
+        public void AddAssignment(Assignment newAssignment) {
             assignments.Add(newAssignment);
         }
 
         public void printAssignments() {
-            foreach(Assignment a in assignments) {
-                Console.WriteLine(a.ToString());
+            Console.WriteLine(Code + "'s Assignment List:");
+            if(assignments.Count > 0) {
+                foreach(Assignment a in assignments) {
+                    Console.WriteLine(a.ToString());
+                }
+            }
+            else {
+                Console.WriteLine("No Assignments Added Yet.");
             }
         }
 
