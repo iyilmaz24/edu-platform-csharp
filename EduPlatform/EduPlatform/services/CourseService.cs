@@ -3,7 +3,6 @@ using EduPlatform.Models;
 namespace EduPlatform.Services {
     public class CourseService {
         private IList<Course> courses;
-        private string? query;
         private static object threadLock = new();
         private static CourseService? instance;
         public static CourseService Current {
@@ -20,31 +19,12 @@ namespace EduPlatform.Services {
             courses = new List<Course>();
         }
 
-        // public IEnumerable<Course> Courses {
-        //     get {
-        //         Console.WriteLine("Search performed");
-        //         return courses.Where(
-        //         c => 
-        //             c.Name.ToUpper().Contains(query ?? string.Empty)
-        //             || c.Code.ToUpper().Contains(query ?? string.Empty)).ToList();
-        //     }
-        // }
-        public void Search(string? query) { Console.WriteLine(query); }
-        //     this.query = query ?? "None";
-
-        //     if(query == "None") {
-        //         Console.WriteLine("Invalid Search, Try Again.");
-        //         return;
-        //     }
-
-        //     IEnumerable<Course> result =  Courses;
-        //     if(result is not IEnumerable<Course>){
-        //         Console.WriteLine("if queryResult is not IEnumerable<Course>");
-        //     }
-        //     else {
-        //         Console.WriteLine(result.Count());
-        //     }
-        // }
+        public List<Course> Search(string? query) { 
+                return courses.Where(
+                c => 
+                    c.Name.ToUpper().Contains(query?.ToUpper() ?? string.Empty)
+                    || c.Code.ToUpper().Contains(query?.ToUpper() ?? string.Empty)).ToList();
+        }
 
         public void Add(Course newCourse) {
             courses.Add(newCourse);
@@ -58,7 +38,7 @@ namespace EduPlatform.Services {
             {
                 Console.WriteLine(++count + ". " + c);
             }
-            Console.WriteLine("Your Selection: ");
+            Console.WriteLine("Type Selection: ");
 
             int intTemp = Convert.ToInt32(Console.ReadLine());
             if(intTemp != 0){
@@ -74,7 +54,10 @@ namespace EduPlatform.Services {
         public void AddStudent(Student student, Course course) {
             course.Enroll(student);
         }
-
+        public void RemoveStudent(Student student, Course course) {
+            // have to get name from student argument and use that to unenroll Person model
+            course.Unenroll(student);
+        }
         public void Print() {
             foreach(Course course in courses){
                 Console.WriteLine(course.ToString());

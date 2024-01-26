@@ -12,7 +12,7 @@ namespace EduPlatform.Models {
         protected string? _name;
         public string Name{
             get { return _name ?? "EMPTY";}
-            set { _name = value; }  
+            set { _name = value.ToUpper(); }  
         }
         protected string? _code;
         public string Code{
@@ -34,11 +34,17 @@ namespace EduPlatform.Models {
             roster.Add(newPerson);
         }
 
+        public void Unenroll(Student student) {
+
+            // roster.Remove();
+        }
+
         public void PrintCourseDetails() {
             Console.WriteLine(ToString());
             Console.WriteLine($"{Code} Students:");
+            int count = 0;
             foreach(var person in roster) {
-                Console.WriteLine(person.ToString());
+                Console.WriteLine(++count + ". " + person.ToString());
             }
         }
     }
