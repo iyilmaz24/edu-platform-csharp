@@ -75,7 +75,9 @@ namespace EduPlatform {
         static void AddStudentToCourse(Student student) {
             Course selectedCourse = CourseService.Current.SelectCourse();
             CourseService.Current.AddStudent(student, selectedCourse);
+            student.AddCourse(selectedCourse);
             selectedCourse.PrintCourseDetails();
+            student.PrintStudentDetails();
         }
 
 
