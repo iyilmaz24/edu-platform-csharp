@@ -12,34 +12,18 @@ namespace EduPlatform {
 
             Console.WriteLine("Welcome to C# Edu Platform!");
             
-            // AddCourse();
-            AddCourse();
-            AddCourse();
-            PrintCourses();
+            string? exit = "N";
+            while(exit == "N" || exit == "n") {
+                PrintMenu();
+                Console.WriteLine("Make your selection:");
+                int userChoice = Convert.ToInt32(Console.ReadLine());
+                MenuController(userChoice);
 
-            CreateStudent();
-            CreateStudent();
-
-            AddStudentToCourse();
-            // AddStudentToCourse();
-            // AddStudentToCourse();
-
-            SearchCourses();
-
-            AddAssignmentToCourse();
-            PrintAssignments();
-            PrintAssignments();
-
-            UpdateCourseInfo();
-            UpdateStudentInfo();
-
-            // SearchCourses();
-            // ListStudents();
-
-            // need to make user select a student and then select a course
-                // AddStudentToCourse(ana);
-
-            // RemoveStudentFromCourse();
+                Console.WriteLine("Exit Program Y or N");
+                exit = Console.ReadLine()??"Y";
+            }
+            
+            Console.WriteLine("Program Exited Successfully.");
         }
 
         static void AddCourse() {
@@ -195,8 +179,77 @@ namespace EduPlatform {
             Console.WriteLine("=====//=========================//======");
         }
 
+        static void ListStudentCourses() {
+            Console.WriteLine("===== List a Student's Courses ======");
+            Student selectedStudent = StudentService.Current.SelectStudent();
+            selectedStudent.PrintStudentDetails();
+            Console.WriteLine("=====//======================//======");
+        }
 
+        static void PrintMenu() {
+            Console.WriteLine("Make a Menu Selection");
+            Console.WriteLine("1. Create a course");
+            Console.WriteLine("2. Update a course's info");
+            Console.WriteLine("3. List all courses");
+            Console.WriteLine("4. Search for a course");
+            Console.WriteLine("5. Create and add an assignment to a course");
+
+            Console.WriteLine("6. Create a student");
+            Console.WriteLine("7. Update a student's info");
+            Console.WriteLine("8. List all students");
+            Console.WriteLine("9. Search for a student");
+            Console.WriteLine("10. List all enrollments for a student");
+            Console.WriteLine("11. Enroll student into a course");
+            Console.WriteLine("12. Unenroll a student from a course");
+
+        }
+        static void MenuController(int userChoice) {
+            if(userChoice < 6) {
+                if(userChoice == 1){
+                    AddCourse();
+                }
+                else if(userChoice == 2){
+                    UpdateCourseInfo();
+                }
+                else if(userChoice == 3){
+                    PrintCourses();
+                }
+                else if(userChoice == 4){
+                    SearchCourses();
+                }
+                else if(userChoice == 5){
+                    AddAssignmentToCourse();
+                }
+            }
+            else if (userChoice < 13) {
+                if(userChoice == 6){
+                    CreateStudent();
+                }
+                else if(userChoice == 7){
+                    UpdateStudentInfo();
+                }
+                else if(userChoice == 8){
+                    ListStudents();
+                }
+                else if(userChoice == 9){
+                    SearchStudents();
+                }
+                else if(userChoice == 10){
+                    ListStudentCourses();
+                }
+                else if(userChoice == 11){
+                    AddStudentToCourse();
+                }
+                else if(userChoice == 12){ 
+                    RemoveStudentFromCourse();
+                }
+            }
+            else {
+                Console.WriteLine("Menu Selection Not Valid");
+            }
+        }
     }
+
 
 
 }
