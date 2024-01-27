@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.IO.Compression;
+﻿
 using EduPlatform.Models;
 using EduPlatform.Services;
 
@@ -22,7 +20,7 @@ namespace EduPlatform {
                 Console.WriteLine("Exit Program Y or N");
                 exit = Console.ReadLine()??"Y";
             }
-            
+    
             Console.WriteLine("Program Exited Successfully.");
         }
 
@@ -250,8 +248,4 @@ namespace EduPlatform {
         }
     }
 
-
-
 }
-
-

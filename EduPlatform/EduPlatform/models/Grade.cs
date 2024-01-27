@@ -15,7 +15,6 @@ namespace EduPlatform.Models {
             get { return _score; }
             set { _score = value; }
         }
-
         private string? _courseName;
         public string? CourseName {
             get { return _courseName; }
